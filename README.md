@@ -3,4 +3,6 @@ Repository that contains usefull bash script. Editing ~/.bashrc it's possibile t
 
 Script description and instructions:
 
-1) "automanage.sh", script used for update, upgrade and clean automatically the system.
+1) "automanage.sh", script used to update, upgrade and clean automatically the system.
+
+2) "clipboard.sh", script used to save clipboard.
