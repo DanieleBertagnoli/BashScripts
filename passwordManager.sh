@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#Description: Script that implemets a CLI password manager. In the ./psswdmng directory you can find the config file, it contains all the GPG mail that are authorized
+# to encrypt and decrypt the file.
+
 if ! [ -f "./psswdmng/config" ] ; then #Create files
 
     mkdir psswdmng #Create directory

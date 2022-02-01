@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Descrizione: Script che crea un file sulla directory ~/Scrivania chiamato clipboard.txt, all'interno del quale viene salvata la clipboard corrente
+#Description: Script that create a file in the directory ~/Scrivania named clipboard.txt, in this file you can find the current clipboard history
 
 trap "exit" INT
 

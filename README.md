@@ -6,3 +6,5 @@ Script description and instructions:
 1) "automanage.sh", script used to update, upgrade and clean automatically the system.
 
 2) "clipboard.sh", script used to save clipboard.
+
+3) "passwordManager.sh", script that implements a CLI password manager

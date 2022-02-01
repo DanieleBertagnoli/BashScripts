@@ -1,6 +1,6 @@
 #/bin/bash
 
-#Descrizione: Script che effettua automaticamente update, upgrade, autoclean e autoremove dei pacchetti installati
+#Description: Script that execute automatically apt-get update, upgrade, autoclean and autoremove
 
 sudo apt-get update;
 sudo apt-get upgrade -y;
