@@ -10,13 +10,14 @@ if ! [ -f "./psswdmng/config" ] ; then #Create files
 
 fi
 
-usage="Usage: passwordManager [-r][-a][-l]"
+usage="Usage: passwordManager [-r to delete an account][-a to add a new account][-l to list the account][-e to add a new GPG mail]"
 
 list=0
 add=0
 remove=0
+mail=0
 
-while getopts "lar" arg; do #Getting the options
+while getopts "lare" arg; do #Getting the options
 
     case $arg in        
         l) #List all the accounts
@@ -29,6 +30,10 @@ while getopts "lar" arg; do #Getting the options
 
         r) #Remove an account
             remove=1
+            ;;
+        
+        e) #Add new GPG mail
+            mail=1
             ;;
 
         *) #Show the usage
@@ -49,7 +54,7 @@ fi
 if [ $list -eq 1 ] ; then #List all accounts
     
     if [ -f "accounts.tmp.gpg" ] ; then #Check if file exists, if not then do not decrypt
-        gpg --output accounts.tmp -d accounts.tmp.gpg
+        gpg --quiet --output accounts.tmp -d accounts.tmp.gpg 
     else
         echo "No accounts detected"
         exit 0
@@ -60,7 +65,7 @@ if [ $list -eq 1 ] ; then #List all accounts
     row=""
      while [ ${#row} -eq 0 ] ; do
 
-        echo "Please enter the row (0 to abort)"
+        echo "Please enter the row (0 to exit)"
         read row
 
         if ! [[ $row =~ ^[0-9]+$ ]] ; then #If the row is not an integer, then loop again
@@ -74,20 +79,21 @@ if [ $list -eq 1 ] ; then #List all accounts
             row=""
         fi
         if [ $row -eq 0 ] ; then #If the row is 0, then abort
-            echo "Aborting"
+            echo "Goodbye!"
             rm accounts.tmp #Delete plain text file
             exit 0
         fi
 
+        site=$(head --lines=$row accounts.tmp | tail --lines=1 | awk '{print $1}') #Get site name
+        username=$(head --lines=$row accounts.tmp | tail --lines=1 | awk '{print $2}') #Get username
+        password=$(head --lines=$row accounts.tmp | tail --lines=1 | awk '{print $3}') #Get password
+
+        echo -e "\n\nSite: $site"
+        echo "Username: $username"
+        echo "Password: $password"
+        row=""
+
     done
-
-    site=$(head --lines=$row accounts.tmp | tail --lines=1 | awk '{print $1}') #Get site name
-    username=$(head --lines=$row accounts.tmp | tail --lines=1 | awk '{print $2}') #Get username
-    password=$(head --lines=$row accounts.tmp | tail --lines=1 | awk '{print $3}') #Get password
-
-    echo -e "\n\nSite: $site"
-    echo "Username: $username"
-    echo "Password: $password"
 
     rm accounts.tmp #Delete plain text file
 
@@ -116,7 +122,7 @@ if [ $add -eq 1 ] ; then #Add new account
     done  
 
     if [ -f "accounts.tmp.gpg" ] ; then #Check if file exists, if not then do not decrypt
-        gpg --output accounts.tmp -d accounts.tmp.gpg
+        gpg --quiet --output accounts.tmp -d accounts.tmp.gpg
     fi
 
     echo $site $username $password >>accounts.tmp #Append the infos into the file
@@ -133,7 +139,7 @@ fi
 if [ $remove -eq 1 ] ; then #Remove an existing account
     
     if [ -f "accounts.tmp.gpg" ] ; then #Check if file exists, if not then do not decrypt
-        gpg --output accounts.tmp -d accounts.tmp.gpg
+        gpg --quiet --output accounts.tmp -d accounts.tmp.gpg
     else
         echo "No accounts detected"
         exit 0
@@ -190,3 +196,21 @@ if [ $remove -eq 1 ] ; then #Remove an existing account
     exit 0
 fi
 
+if [ $mail -eq 1 ] ; then
+
+    echo "Please insert the new GPG mail, leave blank to abort"
+    read newMail
+
+    if [ ${#newMail} -eq 0 ] ; then #Is blank
+        echo "Aborted"
+        exit 0
+    fi 
+
+    oldConfig=$(cat ./psswdmng/config) #Get old mails
+    newConfig=$(echo $oldConfig $newMail) #Add new mail
+    echo $newConfig > ./psswdmng/config #Update config file
+    echo "New mail added"
+
+    exit 0
+
+fi
