@@ -8,3 +8,5 @@ Script description and instructions:
 2) "clipboard.sh", script used to save clipboard.
 
 3) "passwordManager.sh", script that implements a CLI password manager
+
+4) "launchGBA.sh", script that implements the update of GBA games over remote server and launch the GBA emulator
