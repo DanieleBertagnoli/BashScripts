@@ -28,7 +28,7 @@ case $directory in #Check if the given directory is known or not
     CS)
         echo "ComputerScience directory selected"
         directory=$computerScienceLocal;
-        directoryPi$computerSciencePi
+        directoryPi=$computerSciencePi
         ;;
 
     *)
@@ -42,9 +42,18 @@ if [ $error -eq 0 ]; then #If the directory is valid then update it
     echo "Turning on tailscale";
     sudo tailscale up;
 
-    echo "Updating files...";
-    rsync -avzu -e "ssh -p $piSSHPort" $piTailscaleIP:~/$directoryPi/* ~/$directory; #Get new files form raspberry
-    rsync -avzu -e "ssh -p $piSSHPort" ~/$directory/* $piTailscaleIP:~/$directoryPi; #Send new files to raspberry
-    echo "Files are up to date";
+    echo "Directory are:"; 
+    echo "$directoryPi in RaspberryPi";
+    echo "$directory in Local"
+    echo "Continue? [y/n]"
+    read response;
+    
+    if [ $response == "y" ]; then #If the directories are right then continue
+    
+        rsync -avzu -e "ssh -p $piSSHPort" $piTailscaleIP:~/$directoryPi/* ~/$directory; #Get new files form raspberry
+        rsync -avzu -e "ssh -p $piSSHPort" ~/$directory/* $piTailscaleIP:~/$directoryPi; #Send new files to raspberry
+        echo "Files are up to date";
+    
+    fi;
 
 fi;
