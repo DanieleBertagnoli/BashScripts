@@ -10,12 +10,14 @@ piSSHPort="700";
 #Directory path raspberry
 
 universityPi="Documents/University";
-computerSciencePi="Documents/University/ComputerScience"
+computerSciencePi="Documents/University/ComputerScience";
+computerScience2Local="Documents/University/ComputerScience/SS";
 
 #Directory local path
 
 universityLocal="Documents/University";
 computerScienceLocal="Documents/University/ComputerScience"
+computerScience2Local="Documents/University/ComputerScience/SS";
 
 case $directory in #Check if the given directory is known or not
 
@@ -26,6 +28,12 @@ case $directory in #Check if the given directory is known or not
         ;;
     
     CS)
+        echo "ComputerScience directory selected"
+        directory=$computerScienceLocal;
+        directoryPi=$computerSciencePi
+        ;;
+    
+    CS2)
         echo "ComputerScience directory selected"
         directory=$computerScienceLocal;
         directoryPi=$computerSciencePi
