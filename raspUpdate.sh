@@ -11,8 +11,8 @@ piSSHPort="700";
 
 universityPi="Documents/University";
 computerSciencePi="Documents/University/ComputerScience";
-computerScience1Local="Documents/University/ComputerScience/FY/FS";
-computerScience2Local="Documents/University/ComputerScience/FY/SS";
+computerScience1Pi="Documents/University/ComputerScience/FY/FS";
+computerScience2Pi="Documents/University/ComputerScience/FY/SS";
 
 #Directory local path
 
