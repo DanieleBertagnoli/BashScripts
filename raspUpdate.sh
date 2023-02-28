@@ -11,13 +11,13 @@ piSSHPort="700";
 
 universityPi="Documents/University";
 computerSciencePi="Documents/University/ComputerScience";
-computerScience2Local="Documents/University/ComputerScience/SS";
+computerScience2Local="Documents/University/ComputerScience/FY/SS";
 
 #Directory local path
 
 universityLocal="Documents/University";
 computerScienceLocal="Documents/University/ComputerScience"
-computerScience2Local="Documents/University/ComputerScience/SS";
+computerScience2Local="Documents/University/ComputerScience/FY/SS";
 
 case $directory in #Check if the given directory is known or not
 
