@@ -23,7 +23,7 @@ computerScience2Local="Documents/University/ComputerScience/FY/SS";
 
 case $directory in #Check if the given directory is known or not
 
-    University)
+    U)
         echo "University directory selected";
         directory=$universityLocal;
         directoryPi=$universityPi;
