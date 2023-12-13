@@ -66,8 +66,8 @@ if [ $error -eq 0 ]; then #If the directory is valid then update it
     
     if [ $response == "y" ]; then #If the directories are right then continue
     
-        sudo rsync -avzu -e "ssh -p $piSSHPort" $piTailscaleIP:~/$directoryPi/* ~/$directory; #Get new files form raspberry
-        sudo rsync -avzu -e "ssh -p $piSSHPort" ~/$directory/* $piTailscaleIP:~/$directoryPi; #Send new files to raspberry
+        rsync -avzu -e "ssh -p $piSSHPort" $piTailscaleIP:~/$directoryPi/* ~/$directory; #Get new files form raspberry
+        rsync -avzu -e "ssh -p $piSSHPort" ~/$directory/* $piTailscaleIP:~/$directoryPi; #Send new files to raspberry
         echo "Files are up to date";
     
     fi;
