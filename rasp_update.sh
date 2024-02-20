@@ -13,6 +13,7 @@ universityPi="Documents/University";
 computerSciencePi="Documents/University/ComputerScience";
 computerScience1Pi="Documents/University/ComputerScience/FY/";
 computerScience2Pi="Documents/University/ComputerScience/SY/SS";
+thesisPi="Documents/University/ComputerScience/Thesis";
 
 #Directory local path
 
@@ -20,6 +21,7 @@ universityLocal="Documents/University";
 computerScienceLocal="Documents/University/ComputerScience"
 computerScience1Local="Documents/University/ComputerScience/FY/";
 computerScience2Local="Documents/University/ComputerScience/SY/SS";
+thesisLocal="Documents/University/ComputerScience/Thesis";
 
 case $directory in #Check if the given directory is known or not
 
@@ -45,6 +47,12 @@ case $directory in #Check if the given directory is known or not
         echo "ComputerScience directory selected"
         directory=$computerScience2Local;
         directoryPi=$computerScience2Pi
+        ;;
+
+    T)
+        echo "Thesis directory selected"
+        directory=$thesisLocal;
+        directoryPi=$thesisPi
         ;;
 
     *)
